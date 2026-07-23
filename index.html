@@ -235,93 +235,215 @@
   </div>
 
 <main id="main-content">
+
+  <style>
+    .publication-title {
+      font-size: 2.2rem !important;
+      line-height: 1.25 !important;
+      width: 100%;
+    }
+
+    .publication-title .title-line {
+      display: block;
+      white-space: nowrap;
+    }
+
+    @media screen and (max-width: 1024px) {
+      .publication-title {
+        font-size: 1.8rem !important;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .publication-title {
+        font-size: 1.5rem !important;
+      }
+
+      .publication-title .title-line {
+        white-space: normal;
+      }
+    }
+  </style>
+
+
   <section class="hero">
+
     <div class="hero-body">
-      <div class="container">
+
+      <div class="container is-fluid">
+
         <div class="columns is-centered">
+
           <div class="column is-full has-text-centered">
 
-            <!-- TODO: Replace with your paper title -->
-            <h1 class="title is-1 publication-title">
-              TONAV: Task-Oriented Navigation and Action-Velocity Chunk Learning <br> for Articulated Object Quadrupedal Loco-Manipulation
+
+            <!-- ==================== Paper Title ==================== -->
+
+            <h1 class="title publication-title">
+
+              <span class="title-line">
+                TONAV: Task-Oriented Navigation and Action-Velocity Chunk Learning
+              </span>
+
+              <span class="title-line">
+                for Articulated Object Quadrupedal Loco-Manipulation
+              </span>
+
             </h1>
 
+
+            <!-- ==================== Authors ==================== -->
+
             <div class="is-size-5 publication-authors">
-              <!-- TODO: Replace with your paper authors and their personal links -->
 
               <span class="author-block">
-                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,
+                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">
+                  First Author
+                </a><sup>*</sup>,
               </span>
 
               <span class="author-block">
-                <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,
+                <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">
+                  Second Author
+                </a><sup>*</sup>,
               </span>
 
               <span class="author-block">
-                <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
+                <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">
+                  Third Author
+                </a>
               </span>
 
             </div>
 
-                  <div class="is-size-5 publication-authors">
-                    <!-- TODO: Replace with your institution and conference/journal info -->
-                    <span class="author-block">Institution Name<br>Conference name and year</span>
-                    <!-- TODO: Remove this line if no equal contribution -->
-                    <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
-                  </div>
 
-                  <div class="column has-text-centered">
-                    <div class="publication-links">
-                         <!-- TODO: Update with your arXiv paper ID -->
-                      <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark">
-                        <span class="icon">
-                          <i class="fas fa-file-pdf"></i>
-                        </span>
-                        <span>Paper</span>
-                      </a>
+            <!-- ==================== Institution ==================== -->
+
+            <div class="is-size-5 publication-authors">
+
+              <span class="author-block">
+                Institution Name
+                <br>
+                Conference name and year
+              </span>
+
+              <span class="eql-cntrb">
+                <small>
+                  <br>
+                  <sup>*</sup>Indicates Equal Contribution
+                </small>
+              </span>
+
+            </div>
+
+
+            <!-- ==================== Links ==================== -->
+
+            <div class="column has-text-centered">
+
+              <div class="publication-links">
+
+
+                <!-- Paper -->
+
+                <span class="link-block">
+
+                  <a
+                    href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf"
+                    target="_blank"
+                    class="external-link button is-normal is-rounded is-dark"
+                  >
+
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
                     </span>
 
-                    <!-- TODO: Add your supplementary material PDF or remove this section -->
-                    <span class="link-block">
-                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>Supplementary</span>
-                    </a>
-                  </span>
+                    <span>Paper</span>
 
-                  <!-- TODO: Replace with your GitHub repository URL -->
-                  <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
+                  </a>
+
+                </span>
+
+
+                <!-- Supplementary -->
+
+                <span class="link-block">
+
+                  <a
+                    href="static/pdfs/supplementary_material.pdf"
+                    target="_blank"
+                    class="external-link button is-normal is-rounded is-dark"
+                  >
+
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+
+                    <span>Supplementary</span>
+
+                  </a>
+
+                </span>
+
+
+                <!-- Code -->
+
+                <span class="link-block">
+
+                  <a
+                    href="https://github.com/YOUR REPO HERE"
+                    target="_blank"
+                    class="external-link button is-normal is-rounded is-dark"
+                  >
+
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
+
                     <span>Code</span>
+
                   </a>
+
                 </span>
 
-                <!-- TODO: Update with your arXiv paper ID -->
+
+                <!-- arXiv -->
+
                 <span class="link-block">
-                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
+
+                  <a
+                    href="https://arxiv.org/abs/<ARXIV PAPER ID>"
+                    target="_blank"
+                    class="external-link button is-normal is-rounded is-dark"
+                  >
+
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+
+                    <span>arXiv</span>
+
+                  </a>
+
+                </span>
+
+
+              </div>
+
             </div>
+
+
           </div>
+
         </div>
+
       </div>
+
     </div>
-  </div>
-</section>
+
+  </section>
+
+</main>
 
 
 <!-- Teaser video-->
