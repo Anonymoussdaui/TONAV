@@ -202,20 +202,11 @@ h3 {
   position: relative;
   overflow: hidden;
   padding: 106px 0 96px;
-  background:
-    radial-gradient(circle at 16% 10%, rgba(187, 221, 255, 0.36), transparent 33%),
-    radial-gradient(circle at 84% 18%, rgba(213, 202, 255, 0.30), transparent 34%),
-    linear-gradient(180deg, #fbfcff 0%, #ffffff 100%);
+  background: #ffffff;
 }
 
 .hero-orb {
-  position: absolute;
-  width: 260px;
-  height: 260px;
-  border-radius: 50%;
-  filter: blur(4px);
-  opacity: 0.35;
-  pointer-events: none;
+  display: none;
 }
 
 .hero-orb-one {
