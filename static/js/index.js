@@ -1,318 +1,305 @@
-window.HELP_IMPROVE_VIDEOJS = false;
+(() => {
+  "use strict";
 
-// More Works Dropdown Functionality
-function toggleMoreWorks() {
-    const dropdown = document.getElementById('moreWorksDropdown');
-    const button = document.querySelector('.more-works-btn');
-    
-    if (dropdown.classList.contains('show')) {
-        dropdown.classList.remove('show');
-        button.classList.remove('active');
-    } else {
-        dropdown.classList.add('show');
-        button.classList.add('active');
+  const taskLabels = {
+    "close-drawer": "Close drawer",
+    "lower-toilet-lid": "Lower toilet lid",
+    "turn-on-lamp": "Turn on lamp"
+  };
+
+  const methodLabels = {
+    tonav: "TONAV",
+    dp: "DP",
+    act: "ACT",
+    internvln: "InternVLN",
+    streamvln: "StreamVLN"
+  };
+
+  const videoRoot = "static/videos/experiments";
+
+  function setupWorksMenu() {
+    const trigger = document.querySelector(".works-trigger");
+    const menu = document.querySelector(".works-menu");
+
+    if (!trigger || !menu) {
+      return;
     }
-}
 
-// Close dropdown when clicking outside
-document.addEventListener('click', function(event) {
-    const container = document.querySelector('.more-works-container');
-    const dropdown = document.getElementById('moreWorksDropdown');
-    const button = document.querySelector('.more-works-btn');
-    
-    if (container && !container.contains(event.target)) {
-        dropdown.classList.remove('show');
-        button.classList.remove('active');
-    }
-});
-
-// Close dropdown on escape key
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        const dropdown = document.getElementById('moreWorksDropdown');
-        const button = document.querySelector('.more-works-btn');
-        dropdown.classList.remove('show');
-        button.classList.remove('active');
-    }
-});
-
-// Copy BibTeX to clipboard
-function copyBibTeX() {
-    const bibtexElement = document.getElementById('bibtex-code');
-    const button = document.querySelector('.copy-bibtex-btn');
-    const copyText = button.querySelector('.copy-text');
-    
-    if (bibtexElement) {
-        navigator.clipboard.writeText(bibtexElement.textContent).then(function() {
-            // Success feedback
-            button.classList.add('copied');
-            copyText.textContent = 'Cop';
-            
-            setTimeout(function() {
-                button.classList.remove('copied');
-                copyText.textContent = 'Copy';
-            }, 2000);
-        }).catch(function(err) {
-            console.error('Failed to copy: ', err);
-            // Fallback for older browsers
-            const textArea = document.createElement('textarea');
-            textArea.value = bibtexElement.textContent;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
-            
-            button.classList.add('copied');
-            copyText.textContent = 'Cop';
-            setTimeout(function() {
-                button.classList.remove('copied');
-                copyText.textContent = 'Copy';
-            }, 2000);
-        });
-    }
-}
-
-// Scroll to top functionality
-function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-}
-
-// Show/hide scroll to top button
-window.addEventListener('scroll', function() {
-    const scrollButton = document.querySelector('.scroll-to-top');
-    if (window.pageYOffset > 300) {
-        scrollButton.classList.add('visible');
-    } else {
-        scrollButton.classList.remove('visible');
-    }
-});
-
-// Video carousel autoplay when in view
-function setupVideoCarouselAutoplay() {
-    const carouselVideos = document.querySelectorAll('.results-carousel video');
-    
-    if (carouselVideos.length === 0) return;
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            const video = entry.target;
-            if (entry.isIntersecting) {
-                // Video is in view, play it
-                video.play().catch(e => {
-                    // Autoplay failed, probably due to browser policy
-                    console.log('Autoplay prevented:', e);
-                });
-            } else {
-                // Video is out of view, pause it
-                video.pause();
-            }
-        });
-    }, {
-        threshold: 0.5 // Trigger when 50% of the video is visible
-    });
-    
-    carouselVideos.forEach(video => {
-        observer.observe(video);
-    });
-}
-
-// Interactive experiment video browser
-function setupExperimentBrowser() {
-    const root = document.querySelector('.experiment-browser');
-    if (!root) return;
-
-    const basePath = 'static/videos/experiments';
-    const taskLabels = {
-        'close-drawer': 'Close Drawer',
-        'lower-toilet-lid': 'Lower Toilet Lid',
-        'turn-on-lamp': 'Turn On Lamp'
+    const closeMenu = () => {
+      menu.hidden = true;
+      trigger.setAttribute("aria-expanded", "false");
     };
-    const modeButtons = Array.from(root.querySelectorAll('[data-experiment-mode]'));
-    const taskButtons = Array.from(root.querySelectorAll('[data-experiment-task]'));
-    const methodButtons = Array.from(root.querySelectorAll('[data-comparison-method]'));
-    const panels = Array.from(root.querySelectorAll('[data-experiment-panel]'));
-    const videos = Array.from(root.querySelectorAll('video'));
-    const compareWith = root.querySelector('[data-experiment-video="comparison-with"]');
-    const compareWithout = root.querySelector('[data-experiment-video="comparison-without"]');
-    const endToEnd = root.querySelector('[data-experiment-video="endtoend"]');
-    const teleTonav = root.querySelector('[data-experiment-video="teledata-tonav"]');
-    const teleIntern = root.querySelector('[data-experiment-video="teledata-internvln"]');
-    const teleStream = root.querySelector('[data-experiment-video="teledata-streamvln"]');
-    const syncButton = root.querySelector('[data-sync-play]');
-    const syncProgress = root.querySelector('[data-sync-progress]');
-    const syncTime = root.querySelector('[data-sync-time]');
-    let activeMode = 'comparison';
-    let activeTask = 'close-drawer';
-    let activeMethod = 'tonav';
 
-    function setPressed(buttons, activeButton) {
-        buttons.forEach((button) => {
-            const active = button === activeButton;
-            button.classList.toggle('is-active', active);
-            button.setAttribute('aria-pressed', String(active));
-        });
+    trigger.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const willOpen = menu.hidden;
+      menu.hidden = !willOpen;
+      trigger.setAttribute("aria-expanded", String(willOpen));
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!menu.hidden && !menu.contains(event.target)) {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeMenu();
+        trigger.focus();
+      }
+    });
+  }
+
+  function setupExperimentBrowser() {
+    const browser = document.querySelector("[data-experiment-browser]");
+
+    if (!browser) {
+      return;
     }
 
-    function setVideoSource(video, path) {
-        if (!video || video.dataset.src === path) return;
-        video.pause();
-        video.dataset.src = path;
-        video.src = path;
-        video.poster = path.replace(/\.mp4$/, '.jpg');
-        video.load();
+    const modeButtons = [...browser.querySelectorAll("[data-mode]")];
+    const taskButtons = [...browser.querySelectorAll("[data-task]")];
+    const panels = [...browser.querySelectorAll("[data-panel]")];
+    const comparisonMethodButtons = [...browser.querySelectorAll("[data-method]")];
+    const teledataMethodButtons = [...browser.querySelectorAll("[data-teledata-method]")];
+    const comparisonVideos = [...browser.querySelectorAll("[data-comparison-video]")];
+    const endtoendVideo = browser.querySelector("[data-endtoend-video]");
+    const teledataVideo = browser.querySelector("[data-teledata-video]");
+    const syncButton = browser.querySelector("[data-sync-toggle]");
+    const syncRange = browser.querySelector("[data-sync-range]");
+    const syncTime = browser.querySelector("[data-sync-time]");
+
+    let activeMode = "comparison";
+    let activeTask = "close-drawer";
+    let activeMethod = "tonav";
+    let activeTeledataMethod = "tonav";
+    let seeking = false;
+
+    function pauseAllVideos() {
+      browser.querySelectorAll("video").forEach((video) => video.pause());
+      updateSyncButton(false);
     }
 
-    function pauseAll() {
-        videos.forEach((video) => video.pause());
-        updateSyncButton(false);
+    function setVideoSource(video, sourcePath) {
+      if (!video) {
+        return;
+      }
+
+      const source = video.querySelector("source");
+      const absolutePath = new URL(sourcePath, document.baseURI).href;
+      video.poster = sourcePath.replace(/\.mp4$/i, ".jpg");
+
+      if (source && source.src === absolutePath) {
+        return;
+      }
+
+      video.pause();
+      video.removeAttribute("src");
+      if (source) {
+        source.src = sourcePath;
+      }
+      video.load();
     }
 
-    function renderActivePanel() {
-        const taskLabel = taskLabels[activeTask];
-        if (activeMode === 'comparison') {
-            setVideoSource(compareWith, `${basePath}/comparison/${activeTask}/${activeMethod}-with-pv.mp4`);
-            setVideoSource(compareWithout, `${basePath}/comparison/${activeTask}/${activeMethod}-without-pv.mp4`);
-            root.querySelectorAll('[data-comparison-caption]').forEach((caption) => {
-                caption.textContent = `${activeMethod.toUpperCase()} · ${taskLabel}`;
-            });
-            syncProgress.value = 0;
-            syncTime.value = '00:00 / 00:00';
-        } else if (activeMode === 'endtoend') {
-            setVideoSource(endToEnd, `${basePath}/endtoend/${activeTask}.mp4`);
-            root.querySelector('[data-endtoend-caption]').textContent = `TONAV · ${taskLabel}`;
-        } else {
-            setVideoSource(teleTonav, `${basePath}/teledata/${activeTask}/tonav.mp4`);
-            setVideoSource(teleIntern, `${basePath}/teledata/${activeTask}/internvln.mp4`);
-            setVideoSource(teleStream, `${basePath}/teledata/${activeTask}/streamvln.mp4`);
-            root.querySelectorAll('[data-teledata-caption]').forEach((caption) => {
-                caption.textContent = taskLabel;
-            });
+    function setActiveButtons(buttons, attribute, value) {
+      buttons.forEach((button) => {
+        const active = button.dataset[attribute] === value;
+        button.classList.toggle("is-active", active);
+        if (button.hasAttribute("role") && button.getAttribute("role") === "tab") {
+          button.setAttribute("aria-selected", String(active));
         }
+      });
     }
 
-    function showMode(mode) {
-        activeMode = mode;
-        pauseAll();
-        panels.forEach((panel) => {
-            panel.hidden = panel.dataset.experimentPanel !== mode;
-        });
-        renderActivePanel();
+    function updateMode() {
+      setActiveButtons(modeButtons, "mode", activeMode);
+      panels.forEach((panel) => {
+        const active = panel.dataset.panel === activeMode;
+        panel.hidden = !active;
+        panel.classList.toggle("is-active", active);
+      });
+      pauseAllVideos();
     }
 
-    function formatTime(seconds) {
-        if (!Number.isFinite(seconds) || seconds < 0) return '00:00';
-        const minutes = Math.floor(seconds / 60);
-        const remaining = Math.floor(seconds % 60);
-        return `${String(minutes).padStart(2, '0')}:${String(remaining).padStart(2, '0')}`;
+    function updateEndtoend() {
+      const label = taskLabels[activeTask];
+      setVideoSource(endtoendVideo, `${videoRoot}/endtoend/${activeTask}.mp4`);
+      browser.querySelector("[data-endtoend-title]").textContent = label;
+      browser.querySelector("[data-endtoend-caption]").textContent = label;
     }
 
-    function comparisonDuration() {
-        const durations = [compareWith.duration, compareWithout.duration].filter(Number.isFinite);
-        return durations.length ? Math.min(...durations) : 0;
+    function updateComparison() {
+      const taskLabel = taskLabels[activeTask];
+      const methodLabel = methodLabels[activeMethod];
+      browser.querySelector("[data-comparison-title]").textContent = taskLabel;
+
+      comparisonVideos.forEach((video) => {
+        const condition = video.dataset.comparisonVideo;
+        const sourcePath = `${videoRoot}/comparison/${activeTask}/${activeMethod}-${condition}.mp4`;
+        setVideoSource(video, sourcePath);
+        const caption = browser.querySelector(`[data-comparison-caption="${condition}"]`);
+        if (caption) {
+          caption.textContent = `${methodLabel} · ${taskLabel}`;
+        }
+      });
+
+      if (syncRange) {
+        syncRange.value = "0";
+      }
+      if (syncTime) {
+        syncTime.textContent = "00:00";
+      }
+      updateSyncButton(false);
+    }
+
+    function updateTeledata() {
+      const taskLabel = taskLabels[activeTask];
+      const methodLabel = methodLabels[activeTeledataMethod];
+      setVideoSource(
+        teledataVideo,
+        `${videoRoot}/teledata/${activeTask}/${activeTeledataMethod}.mp4`
+      );
+      browser.querySelector("[data-teledata-title]").textContent = taskLabel;
+      browser.querySelector("[data-teledata-caption]").textContent = `${methodLabel} · ${taskLabel}`;
+    }
+
+    function updateTask() {
+      setActiveButtons(taskButtons, "task", activeTask);
+      updateEndtoend();
+      updateComparison();
+      updateTeledata();
     }
 
     function updateSyncButton(playing) {
-        const symbol = syncButton.querySelector('[data-sync-symbol]');
-        const text = syncButton.querySelector('[data-sync-label]');
-        symbol.textContent = playing ? 'Ⅱ' : '▶';
-        text.textContent = playing ? 'Pause both' : 'Play both';
+      if (!syncButton) {
+        return;
+      }
+
+      const symbol = syncButton.querySelector("[data-sync-symbol]");
+      const label = syncButton.querySelector("[data-sync-label]");
+      if (symbol) {
+        symbol.textContent = playing ? "Ⅱ" : "▶";
+      }
+      if (label) {
+        label.textContent = playing ? "Pause both" : "Play both";
+      }
+    }
+
+    function formatTime(seconds) {
+      if (!Number.isFinite(seconds) || seconds < 0) {
+        return "00:00";
+      }
+      const minutes = Math.floor(seconds / 60);
+      const remainingSeconds = Math.floor(seconds % 60);
+      return `${String(minutes).padStart(2, "0")}:${String(remainingSeconds).padStart(2, "0")}`;
     }
 
     function updateSyncProgress() {
-        const duration = comparisonDuration();
-        const current = Math.min(compareWith.currentTime || 0, duration || Infinity);
-        syncProgress.value = duration ? Math.round((current / duration) * 1000) : 0;
-        syncTime.value = `${formatTime(current)} / ${formatTime(duration)}`;
-        if (!compareWith.paused && !compareWithout.paused && Math.abs(compareWith.currentTime - compareWithout.currentTime) > 0.15) {
-            compareWithout.currentTime = compareWith.currentTime;
-        }
-        updateSyncButton(!compareWith.paused && !compareWithout.paused);
+      if (seeking || !syncRange || !syncTime || comparisonVideos.length === 0) {
+        return;
+      }
+
+      const reference = comparisonVideos[0];
+      const duration = reference.duration;
+      const ratio = Number.isFinite(duration) && duration > 0 ? reference.currentTime / duration : 0;
+      syncRange.value = String(Math.round(Math.max(0, Math.min(1, ratio)) * 1000));
+      syncTime.textContent = formatTime(reference.currentTime);
     }
 
     modeButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-            setPressed(modeButtons, button);
-            showMode(button.dataset.experimentMode);
-        });
+      button.addEventListener("click", () => {
+        activeMode = button.dataset.mode;
+        updateMode();
+      });
     });
 
     taskButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-            activeTask = button.dataset.experimentTask;
-            setPressed(taskButtons, button);
-            pauseAll();
-            renderActivePanel();
-        });
+      button.addEventListener("click", () => {
+        activeTask = button.dataset.task;
+        updateTask();
+      });
     });
 
-    methodButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-            activeMethod = button.dataset.comparisonMethod;
-            setPressed(methodButtons, button);
-            pauseAll();
-            renderActivePanel();
-        });
+    comparisonMethodButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        activeMethod = button.dataset.method;
+        setActiveButtons(comparisonMethodButtons, "method", activeMethod);
+        updateComparison();
+      });
     });
 
-    syncButton.addEventListener('click', async () => {
-        if (!compareWith.paused || !compareWithout.paused) {
-            compareWith.pause();
-            compareWithout.pause();
-            updateSyncButton(false);
-            return;
+    teledataMethodButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        activeTeledataMethod = button.dataset.teledataMethod;
+        setActiveButtons(teledataMethodButtons, "teledataMethod", activeTeledataMethod);
+        updateTeledata();
+      });
+    });
+
+    if (syncButton) {
+      syncButton.addEventListener("click", async () => {
+        const anyPlaying = comparisonVideos.some((video) => !video.paused && !video.ended);
+
+        if (anyPlaying) {
+          comparisonVideos.forEach((video) => video.pause());
+          updateSyncButton(false);
+          return;
         }
-        const duration = comparisonDuration();
-        if (duration && compareWith.currentTime >= duration - 0.1) {
-            compareWith.currentTime = 0;
-            compareWithout.currentTime = 0;
-        } else {
-            compareWithout.currentTime = compareWith.currentTime;
-        }
-        await Promise.allSettled([compareWith.play(), compareWithout.play()]);
-        updateSyncButton(!compareWith.paused && !compareWithout.paused);
-    });
 
-    syncProgress.addEventListener('input', () => {
-        const duration = comparisonDuration();
-        if (!duration) return;
-        const target = (Number(syncProgress.value) / 1000) * duration;
-        compareWith.currentTime = target;
-        compareWithout.currentTime = target;
-        updateSyncProgress();
-    });
-
-    compareWith.addEventListener('timeupdate', updateSyncProgress);
-    compareWith.addEventListener('loadedmetadata', updateSyncProgress);
-    compareWithout.addEventListener('loadedmetadata', updateSyncProgress);
-    compareWith.addEventListener('ended', () => updateSyncButton(false));
-    compareWithout.addEventListener('ended', () => updateSyncButton(false));
-
-    renderActivePanel();
-}
-
-document.addEventListener('DOMContentLoaded', setupExperimentBrowser);
-
-$(document).ready(function() {
-    // Check for click events on the navbar burger icon
-
-    var options = {
-		slidesToScroll: 1,
-		slidesToShow: 1,
-		loop: true,
-		infinite: true,
-		autoplay: true,
-		autoplaySpeed: 5000,
+        const reference = comparisonVideos[0];
+        comparisonVideos.slice(1).forEach((video) => {
+          if (Number.isFinite(reference.currentTime)) {
+            video.currentTime = Math.min(reference.currentTime, video.duration || reference.currentTime);
+          }
+        });
+        await Promise.allSettled(comparisonVideos.map((video) => video.play()));
+        updateSyncButton(comparisonVideos.some((video) => !video.paused));
+      });
     }
 
-	// Initialize all div with carousel class
-    var carousels = bulmaCarousel.attach('.carousel', options);
-	
-    bulmaSlider.attach();
-    
-    // Setup video autoplay for carousel
-    setupVideoCarouselAutoplay();
+    if (syncRange) {
+      syncRange.addEventListener("input", () => {
+        seeking = true;
+        const ratio = Number(syncRange.value) / 1000;
+        comparisonVideos.forEach((video) => {
+          if (Number.isFinite(video.duration) && video.duration > 0) {
+            video.currentTime = ratio * video.duration;
+          }
+        });
+        const reference = comparisonVideos[0];
+        syncTime.textContent = formatTime(reference.currentTime);
+      });
 
-})
+      syncRange.addEventListener("change", () => {
+        seeking = false;
+        updateSyncProgress();
+      });
+    }
+
+    comparisonVideos.forEach((video) => {
+      video.addEventListener("timeupdate", updateSyncProgress);
+      video.addEventListener("play", () => updateSyncButton(true));
+      video.addEventListener("pause", () => {
+        if (comparisonVideos.every((item) => item.paused)) {
+          updateSyncButton(false);
+        }
+      });
+      video.addEventListener("ended", () => {
+        if (comparisonVideos.every((item) => item.ended || item.paused)) {
+          updateSyncButton(false);
+        }
+      });
+    });
+
+    setActiveButtons(comparisonMethodButtons, "method", activeMethod);
+    setActiveButtons(teledataMethodButtons, "teledataMethod", activeTeledataMethod);
+    updateTask();
+    updateMode();
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    setupWorksMenu();
+    setupExperimentBrowser();
+  });
+})();
