@@ -225,7 +225,8 @@ h3 {
 .hero-content {
   position: relative;
   z-index: 1;
-  max-width: 1040px;
+  width: min(calc(100% - 48px), 1500px);
+  max-width: 1500px;
   text-align: center;
 }
 
@@ -243,16 +244,17 @@ h3 {
 }
 
 .hero h1 {
-  max-width: 1010px;
+  max-width: 1500px;
   margin: 25px auto 0;
   color: var(--ink);
   font-family: "Inter", Arial, Helvetica, sans-serif;
-  font-size: clamp(38px, 5.3vw, 68px);
+  font-size: clamp(34px, 3vw, 50px);
   font-weight: 600;
   letter-spacing: -0.045em;
   line-height: 1.06;
   transform: scaleY(0.97);
   transform-origin: center;
+  white-space: nowrap;
 }
 
 .hero h1 span {
@@ -813,6 +815,14 @@ footer {
 @media (max-width: 900px) {
   .nav-links {
     gap: 18px;
+  }
+
+  .hero h1 {
+    white-space: normal;
+  }
+
+  .hero-title-break {
+    display: none;
   }
 
   .abstract-layout {
