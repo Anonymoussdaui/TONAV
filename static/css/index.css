@@ -257,12 +257,21 @@ h3 {
   white-space: nowrap;
 }
 
-.hero h1 span {
+.hero-title-brand {
+  display: block;
+  margin-bottom: 14px;
   background: linear-gradient(115deg, #2f6edc 2%, #7470dd 82%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  font-size: clamp(58px, 6vw, 88px);
   font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+}
+
+.hero-title-line {
+  display: block;
 }
 
 .hero-summary {
@@ -819,10 +828,6 @@ footer {
 
   .hero h1 {
     white-space: normal;
-  }
-
-  .hero-title-break {
-    display: none;
   }
 
   .abstract-layout {
