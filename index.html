@@ -533,6 +533,108 @@
 <!-- End image carousel -->
 
 
+<!-- Experiment videos -->
+<section class="section experiment-section" id="experiments">
+  <div class="container is-max-desktop">
+    <div class="experiment-intro has-text-centered">
+      <h2 class="title is-3">Experiments</h2>
+      <p>
+        Explore real-world articulated-object tasks across end-to-end demonstrations,
+        controlled comparisons, and teleoperation data.
+      </p>
+    </div>
+
+    <div class="experiment-browser">
+      <div class="experiment-tabs" role="group" aria-label="Experiment category">
+        <button class="experiment-tab" type="button" data-experiment-mode="endtoend" aria-pressed="false">End-to-end</button>
+        <button class="experiment-tab is-active" type="button" data-experiment-mode="comparison" aria-pressed="true">Comparison</button>
+        <button class="experiment-tab" type="button" data-experiment-mode="teledata" aria-pressed="false">Teleoperation data</button>
+      </div>
+
+      <div class="experiment-task-tabs" role="group" aria-label="Task selection">
+        <button class="experiment-task is-active" type="button" data-experiment-task="close-drawer" aria-pressed="true">Close drawer</button>
+        <button class="experiment-task" type="button" data-experiment-task="lower-toilet-lid" aria-pressed="false">Lower toilet lid</button>
+        <button class="experiment-task" type="button" data-experiment-task="turn-on-lamp" aria-pressed="false">Turn on lamp</button>
+      </div>
+
+      <div class="experiment-panel" data-experiment-panel="comparison">
+        <div class="comparison-toolbar">
+          <div>
+            <h3>P–V Control Comparison</h3>
+            <p>Two synchronized clips from the same method and task.</p>
+          </div>
+          <div class="comparison-methods" role="group" aria-label="Comparison method">
+            <button class="comparison-method is-active" type="button" data-comparison-method="tonav" aria-pressed="true">TONAV</button>
+            <button class="comparison-method" type="button" data-comparison-method="dp" aria-pressed="false">DP</button>
+            <button class="comparison-method" type="button" data-comparison-method="act" aria-pressed="false">ACT</button>
+          </div>
+        </div>
+
+        <div class="comparison-video-grid">
+          <figure class="experiment-video-card">
+            <figcaption>With P–V Control</figcaption>
+            <video data-experiment-video="comparison-with" controls muted playsinline preload="metadata"></video>
+            <p data-comparison-caption>TONAV · Close Drawer</p>
+          </figure>
+          <figure class="experiment-video-card">
+            <figcaption>Without P–V Control</figcaption>
+            <video data-experiment-video="comparison-without" controls muted playsinline preload="metadata"></video>
+            <p data-comparison-caption>TONAV · Close Drawer</p>
+          </figure>
+        </div>
+
+        <div class="comparison-sync-controls">
+          <button class="sync-play-button" type="button" data-sync-play>
+            <span data-sync-symbol aria-hidden="true">▶</span>
+            <span data-sync-label>Play both</span>
+          </button>
+          <label class="sync-progress-label">
+            <span class="is-sr-only">Synchronized video progress</span>
+            <input class="sync-progress" data-sync-progress type="range" min="0" max="1000" value="0">
+          </label>
+          <output class="sync-time" data-sync-time>00:00 / 00:00</output>
+        </div>
+      </div>
+
+      <div class="experiment-panel" data-experiment-panel="endtoend" hidden>
+        <p class="experiment-panel-description">
+          A complete TONAV episode from navigation to articulated-object manipulation.
+        </p>
+        <figure class="experiment-video-card experiment-video-card-large">
+          <figcaption>End-to-end demonstration</figcaption>
+          <video data-experiment-video="endtoend" controls muted playsinline preload="metadata"></video>
+          <p data-endtoend-caption>TONAV · Close Drawer</p>
+        </figure>
+      </div>
+
+      <div class="experiment-panel" data-experiment-panel="teledata" hidden>
+        <p class="experiment-panel-description">
+          Compare teleoperation trajectories from TONAV, InternVLN, and StreamVLN.
+        </p>
+        <div class="teledata-video-grid">
+          <figure class="experiment-video-card">
+            <figcaption>TONAV</figcaption>
+            <video data-experiment-video="teledata-tonav" controls muted playsinline preload="metadata"></video>
+            <p data-teledata-caption>Close Drawer</p>
+          </figure>
+          <figure class="experiment-video-card">
+            <figcaption>InternVLN</figcaption>
+            <video data-experiment-video="teledata-internvln" controls muted playsinline preload="metadata"></video>
+            <p data-teledata-caption>Close Drawer</p>
+          </figure>
+          <figure class="experiment-video-card">
+            <figcaption>StreamVLN</figcaption>
+            <video data-experiment-video="teledata-streamvln" controls muted playsinline preload="metadata"></video>
+            <p data-teledata-caption>Close Drawer</p>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End experiment videos -->
+
+
 
 
 <!-- Youtube video -->
