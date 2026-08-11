@@ -16,6 +16,7 @@
   };
 
   const videoRoot = "static/videos/experiments";
+  const experimentAssetVersion = "20260811-4";
 
   function setupWorksMenu() {
     const trigger = document.querySelector(".works-trigger");
@@ -87,8 +88,9 @@
       }
 
       const source = video.querySelector("source");
-      const absolutePath = new URL(sourcePath, document.baseURI).href;
-      video.poster = sourcePath.replace(/\.mp4$/i, ".jpg");
+      const versionedSourcePath = `${sourcePath}?v=${experimentAssetVersion}`;
+      const absolutePath = new URL(versionedSourcePath, document.baseURI).href;
+      video.poster = `${sourcePath.replace(/\.mp4$/i, ".jpg")}?v=${experimentAssetVersion}`;
 
       if (source && source.src === absolutePath) {
         return;
@@ -97,7 +99,7 @@
       video.pause();
       video.removeAttribute("src");
       if (source) {
-        source.src = sourcePath;
+        source.src = versionedSourcePath;
       }
       video.load();
     }

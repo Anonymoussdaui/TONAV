@@ -121,6 +121,7 @@ h3 {
 }
 
 .brand {
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 17px;
   font-weight: 800;
   letter-spacing: 0.035em;
@@ -245,7 +246,7 @@ h3 {
   max-width: 1010px;
   margin: 25px auto 0;
   color: var(--ink);
-  font-family: "Source Serif 4", Georgia, serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: clamp(38px, 5.3vw, 68px);
   font-weight: 700;
   letter-spacing: -0.045em;
@@ -326,7 +327,7 @@ h3 {
 }
 
 .section-heading h2 {
-  font-family: "Source Serif 4", Georgia, serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: clamp(32px, 4.3vw, 48px);
   font-weight: 700;
   letter-spacing: -0.035em;
@@ -558,8 +559,9 @@ h3 {
 }
 
 .panel-topline h3 {
-  font-family: "Source Serif 4", Georgia, serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: clamp(25px, 3vw, 34px);
+  font-weight: 700;
   letter-spacing: -0.025em;
   line-height: 1.15;
 }
@@ -701,6 +703,10 @@ h3 {
 .qualitative-figure img {
   width: 100%;
   border-radius: 10px;
+}
+
+.figure-link {
+  display: block;
 }
 
 .teledata-card {
