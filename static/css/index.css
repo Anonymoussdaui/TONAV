@@ -488,9 +488,9 @@ h3 {
 }
 
 .experiment-tabs button {
-  min-height: 45px;
-  padding: 9px 13px;
-  font-size: 14px;
+  min-height: 52px;
+  padding: 11px 16px;
+  font-size: 16px;
 }
 
 .experiment-tabs button:hover,
@@ -510,14 +510,14 @@ h3 {
 .experiment-controls {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin: 18px 4px 0;
+  gap: 18px;
+  margin: 20px 4px 0;
 }
 
 .control-label {
   flex: 0 0 auto;
   color: #78839a;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 750;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -536,6 +536,12 @@ h3 {
   border-color: #e0e6f2;
   background: #fbfcff;
   font-size: 12px;
+}
+
+.segmented-control button {
+  min-height: 42px;
+  padding: 9px 16px;
+  font-size: 14px;
 }
 
 .segmented-control button.is-active,
@@ -804,22 +810,22 @@ h3 {
 }
 
 .experiment-notes {
-  margin-top: 20px;
-  padding: 3px 24px;
+  margin-top: 24px;
+  padding: 6px 28px;
   border: 1px solid #e2e7f1;
-  border-radius: 19px;
+  border-radius: 22px;
   background: rgba(255, 255, 255, 0.94);
   box-shadow: 0 9px 28px rgba(60, 82, 132, 0.055);
 }
 
 .note-row {
   display: grid;
-  grid-template-columns: 42px max-content minmax(0, 1fr);
-  gap: 13px;
-  align-items: baseline;
-  padding: 17px 0;
+  grid-template-columns: 44px 160px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+  padding: 20px 0;
   color: #31415e;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .note-row + .note-row {
@@ -828,38 +834,42 @@ h3 {
 
 .note-index {
   color: #9aabca;
-  font-size: 11px;
+  padding-top: 2px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
 }
 
 .note-row strong {
   color: #142745;
-  font-size: 13px;
+  font-size: 14.5px;
+  line-height: 1.55;
 }
 
 .note-row p {
   color: #536078;
-  font-size: 13px;
+  font-size: 14.5px;
 }
 
 .note-row--teledata {
-  grid-template-columns: 42px minmax(0, 1fr);
+  grid-template-columns: 44px minmax(0, 1fr);
   align-items: start;
 }
 
 .teledata-note-copy {
   display: grid;
-  gap: 7px;
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: 18px;
 }
 
 .teledata-note-list {
   display: grid;
-  gap: 6px;
+  gap: 8px;
   margin: 0;
-  padding-left: 20px;
+  padding-left: 22px;
   color: #536078;
-  font-size: 13px;
+  font-size: 14.5px;
+  line-height: 1.6;
 }
 
 .teledata-note-list li {
@@ -1028,7 +1038,9 @@ footer {
   }
 
   .experiment-tabs button {
-    min-height: 41px;
+    min-height: 44px;
+    padding: 10px 12px;
+    font-size: 14.5px;
   }
 
   .experiment-controls {
@@ -1044,7 +1056,9 @@ footer {
 
   .segmented-control button {
     padding-inline: 7px;
-    font-size: 10.5px;
+    min-height: 44px;
+    font-size: 12.5px;
+    line-height: 1.25;
   }
 
   .experiment-panel {
@@ -1100,13 +1114,23 @@ footer {
   }
 
   .experiment-notes {
-    padding-inline: 16px;
+    padding-inline: 14px;
   }
 
   .note-row {
     grid-template-columns: 30px 1fr;
-    gap: 3px 10px;
-    padding: 15px 0;
+    gap: 5px 10px;
+    padding: 17px 0;
+  }
+
+  .note-row strong {
+    font-size: 14.5px;
+  }
+
+  .note-row p,
+  .teledata-note-list {
+    font-size: 13.5px;
+    line-height: 1.65;
   }
 
   .note-index {
@@ -1119,6 +1143,17 @@ footer {
 
   .note-row--teledata {
     grid-template-columns: 30px minmax(0, 1fr);
+  }
+
+  .teledata-note-copy {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+
+  .teledata-note-list {
+    gap: 8px;
+    padding-left: 18px;
+    overflow-wrap: anywhere;
   }
 
   .footer-inner {
