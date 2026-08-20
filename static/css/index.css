@@ -324,15 +324,26 @@ h3 {
   border-radius: 14px;
   background: #f7f7f8;
   color: #303744;
+  cursor: pointer;
   font-size: 14px;
   font-weight: 600;
   line-height: 1.25;
   white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(66, 82, 121, 0.04);
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
 }
 
-.resource-pill:disabled {
-  cursor: default;
-  opacity: 1;
+.resource-pill:hover,
+.resource-pill:focus-visible {
+  border-color: #d5def2;
+  background: linear-gradient(135deg, #eef6ff, #f2efff);
+  box-shadow: 0 9px 22px rgba(74, 99, 174, 0.12);
+  transform: translateY(-2px);
+}
+
+.resource-pill:active {
+  box-shadow: 0 3px 10px rgba(74, 99, 174, 0.08);
+  transform: translateY(0) scale(0.98);
 }
 
 .resource-pill--compact {
