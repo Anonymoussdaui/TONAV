@@ -748,30 +748,6 @@ h3 {
   line-height: 1.15;
 }
 
-.ablation-summary {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 7px 9px 7px 13px;
-  border: 1px solid #dce4f3;
-  border-radius: 999px;
-  background: #ffffff;
-  color: #6e7b92;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.055em;
-  text-transform: uppercase;
-}
-
-.ablation-summary strong {
-  padding: 4px 9px;
-  border-radius: 999px;
-  background: linear-gradient(130deg, #e5f1ff, #eeeaff);
-  color: #315fa7;
-  font-size: 13px;
-  letter-spacing: 0;
-}
-
 .ablation-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -817,22 +793,6 @@ h3 {
   color: #78849a;
   font-size: 10px;
   font-weight: 650;
-}
-
-.ablation-card .ablation-score {
-  flex: 0 0 auto;
-  padding: 5px 9px;
-  border-radius: 999px;
-  background: #f2f5fa;
-  color: #61708a;
-  font-size: 11px;
-  font-weight: 750;
-  font-variant-numeric: tabular-nums;
-}
-
-.ablation-card-ours .ablation-score {
-  background: linear-gradient(130deg, #e5f1ff, #eeeaff);
-  color: #315fa7;
 }
 
 .ablation-card video {
@@ -1103,11 +1063,6 @@ footer {
 
   .ablation-heading {
     display: block;
-  }
-
-  .ablation-summary {
-    width: fit-content;
-    margin-top: 10px;
   }
 
   .teledata-block + .teledata-block {

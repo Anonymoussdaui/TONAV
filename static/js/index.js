@@ -16,7 +16,7 @@
   };
 
   const videoRoot = "static/videos/experiments";
-  const experimentAssetVersion = "20260820-3";
+  const experimentAssetVersion = "20260820-4";
 
   function setupWorksMenu() {
     const trigger = document.querySelector(".works-trigger");
@@ -77,12 +77,6 @@
     let activeMethod = "tonav";
     let activeTeledataMethod = "tonav";
     let seeking = false;
-
-    const ablationOursScores = {
-      "close-drawer": "4/5",
-      "turn-on-lamp": "3/5",
-      "lower-toilet-lid": "2/5"
-    };
 
     function pauseAllVideos() {
       browser.querySelectorAll("video").forEach((video) => video.pause());
@@ -176,13 +170,9 @@
     function updateAblation() {
       const taskLabel = taskLabels[activeTask];
       const title = browser.querySelector("[data-ablation-title]");
-      const oursScore = browser.querySelector('[data-ablation-score="qwen-ours"]');
 
       if (title) {
         title.textContent = taskLabel;
-      }
-      if (oursScore) {
-        oursScore.textContent = ablationOursScores[activeTask];
       }
 
       ablationVideos.forEach((video) => {
