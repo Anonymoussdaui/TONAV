@@ -748,173 +748,105 @@ h3 {
   line-height: 1.15;
 }
 
-.ablation-heading > p {
-  max-width: 390px;
-  color: #6d7890;
-  font-size: 12px;
-  line-height: 1.55;
-  text-align: right;
-}
-
-.llm-table-scroll {
-  overflow-x: auto;
-  margin-top: 18px;
-  border: 1px solid #dfe5f0;
-  border-radius: 17px;
+.ablation-summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 9px 7px 13px;
+  border: 1px solid #dce4f3;
+  border-radius: 999px;
   background: #ffffff;
-  box-shadow: 0 8px 24px rgba(60, 82, 132, 0.055);
-  scrollbar-color: #cbd7ec transparent;
-  scrollbar-width: thin;
-}
-
-.llm-table-scroll:focus-visible {
-  outline-offset: 4px;
-}
-
-.llm-video-table {
-  width: 100%;
-  min-width: 1020px;
-  border-spacing: 0;
-  table-layout: fixed;
-  color: #233451;
-  font-size: 11px;
-  line-height: 1.35;
-}
-
-.llm-method-column {
-  width: 21%;
-}
-
-.llm-task-column {
-  width: 23%;
-}
-
-.llm-overall-column {
-  width: 10%;
-}
-
-.llm-video-table th,
-.llm-video-table td {
-  border-right: 1px solid #e4e9f2;
-}
-
-.llm-video-table th:last-child,
-.llm-video-table td:last-child {
-  border-right: 0;
-}
-
-.llm-video-table thead th {
-  padding: 9px 10px;
-  border-bottom: 1px solid #dce3ef;
-  background: #f6f8fc;
-  color: #34435e;
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  text-align: center;
-}
-
-.llm-video-table thead tr:first-child th {
-  color: #536482;
+  color: #6e7b92;
   font-size: 10px;
+  font-weight: 700;
   letter-spacing: 0.055em;
   text-transform: uppercase;
 }
 
-.llm-video-table thead th[rowspan],
-.llm-video-table tbody th {
-  position: sticky;
-  left: 0;
-  z-index: 2;
-  box-shadow: 9px 0 16px -16px rgba(33, 50, 82, 0.7);
+.ablation-summary strong {
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: linear-gradient(130deg, #e5f1ff, #eeeaff);
+  color: #315fa7;
+  font-size: 13px;
+  letter-spacing: 0;
 }
 
-.llm-video-table thead th[rowspan] {
-  z-index: 4;
+.ablation-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+  margin-top: 18px;
 }
 
-.llm-video-table thead th:first-child {
-  text-align: left;
-}
-
-.llm-video-table tbody th {
-  padding: 15px 13px;
+.ablation-card {
+  padding: 12px;
+  border: 1px solid #dfe5f0;
+  border-radius: 17px;
   background: #ffffff;
-  color: #1d2e4b;
-  font-size: 11px;
-  font-weight: 700;
-  text-align: left;
-  vertical-align: middle;
+  box-shadow: 0 8px 24px rgba(60, 82, 132, 0.055);
 }
 
-.llm-video-table tbody th span,
-.llm-video-table tbody th small {
-  display: block;
+.ablation-card-ours {
+  border-color: #d6e1f5;
+  background: linear-gradient(145deg, #ffffff 40%, #f8faff);
 }
 
-.llm-video-table tbody th small {
-  margin-top: 3px;
-  color: #77839a;
-  font-size: 10px;
-  font-weight: 600;
-}
-
-.llm-video-table tbody td {
-  padding: 8px;
-  background: #ffffff;
-  vertical-align: top;
-}
-
-.llm-video-table tbody tr + tr > * {
-  border-top: 1px solid #e5eaf3;
-}
-
-.llm-video-table tbody .llm-group-start > * {
-  border-top: 2px solid #cbd5e5;
-}
-
-.llm-video-table tbody .ours-row > * {
-  background: #fbfdff;
-}
-
-.llm-video-table video {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border-radius: 8px;
-  background: #0c1322;
-  object-fit: contain;
-}
-
-.llm-cell-footer {
+.ablation-card header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 7px;
-  min-height: 29px;
-  padding-top: 7px;
+  gap: 12px;
+  min-height: 48px;
+  padding: 2px 3px 10px;
 }
 
-.cell-score,
-.overall-score {
-  color: #53627c;
+.ablation-card header strong,
+.ablation-card header span {
+  display: block;
+}
+
+.ablation-card header strong {
+  color: #1b2c49;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.ablation-card header div > span {
+  margin-top: 2px;
+  color: #78849a;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.ablation-card .ablation-score {
+  flex: 0 0 auto;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: #f2f5fa;
+  color: #61708a;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 750;
   font-variant-numeric: tabular-nums;
 }
 
-.ours-row .cell-score,
-.ours-row .overall-score {
+.ablation-card-ours .ablation-score {
+  background: linear-gradient(130deg, #e5f1ff, #eeeaff);
   color: #315fa7;
 }
 
-.overall-score {
-  text-align: center;
-  vertical-align: middle !important;
+.ablation-card video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  background: #0c1322;
+  object-fit: contain;
 }
 
 .run-switcher {
   display: inline-flex;
   gap: 2px;
+  margin-top: 10px;
   padding: 2px;
   border: 1px solid #e0e6f1;
   border-radius: 8px;
@@ -942,6 +874,15 @@ h3 {
   background: linear-gradient(130deg, #e5f1ff, #eeeaff);
   box-shadow: 0 2px 7px rgba(75, 100, 165, 0.09);
   color: #315b9f;
+}
+
+.ablation-card-note {
+  min-height: 26px;
+  margin-top: 10px;
+  color: #7a869b;
+  font-size: 10px;
+  font-weight: 650;
+  line-height: 26px;
 }
 
 .experiment-notes {
@@ -1206,9 +1147,9 @@ footer {
     display: block;
   }
 
-  .ablation-heading > p {
-    margin-top: 8px;
-    text-align: left;
+  .ablation-summary {
+    width: fit-content;
+    margin-top: 10px;
   }
 
   .teledata-block + .teledata-block {
@@ -1216,13 +1157,8 @@ footer {
     padding-top: 27px;
   }
 
-  .llm-table-scroll {
-    margin-right: -15px;
-    border-radius: 13px 0 0 13px;
-  }
-
-  .llm-video-table {
-    min-width: 920px;
+  .ablation-grid {
+    grid-template-columns: 1fr;
   }
 
   .comparison-grid {

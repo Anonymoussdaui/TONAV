@@ -17,8 +17,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="static/css/index.css?v=20260820-1">
-  <script src="static/js/index.js?v=20260820-1" defer></script>
+  <link rel="stylesheet" href="static/css/index.css?v=20260820-2">
+  <script src="static/js/index.js?v=20260820-2" defer></script>
 </head>
 
 <body>
@@ -253,169 +253,76 @@
               <div class="ablation-heading">
                 <div>
                   <p class="panel-kicker">Navigation Ablation</p>
-                  <h3>LLM instruction decomposition</h3>
+                  <h3 data-ablation-title>Close drawer</h3>
                 </div>
-                <p>Success rates across three articulated-object mobile manipulation tasks.</p>
+                <div class="ablation-summary" aria-label="Overall success rate">
+                  <span>Overall SR</span>
+                  <strong>60%</strong>
+                </div>
               </div>
 
-              <div class="llm-table-scroll" tabindex="0" role="region" aria-label="Navigation instruction decomposition comparison; scroll horizontally to view all columns">
-                <table class="llm-video-table">
-                  <colgroup>
-                    <col class="llm-method-column">
-                    <col span="3" class="llm-task-column">
-                    <col class="llm-overall-column">
-                  </colgroup>
-                  <thead>
-                    <tr>
-                      <th rowspan="2" scope="col">Method</th>
-                      <th colspan="3" scope="colgroup">Instruction Decomposition Success Rates</th>
-                      <th rowspan="2" scope="col">Overall<br>SR</th>
-                    </tr>
-                    <tr>
-                      <th scope="col">Close Drawer</th>
-                      <th scope="col">Turn On Lamp</th>
-                      <th scope="col">Lower Toilet Lid</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">
-                        <span>Doubao-Seed-2.1-Pro</span>
-                        <small>(w/o PP-CoT)</small>
-                      </th>
-                      <td data-llm-video-cell>
-                        <video controls muted playsinline preload="none" poster="static/videos/experiments/teledata/navigation-ablation/close-drawer/doubao-without-ppcot/run-1.jpg">
-                          <source src="static/videos/experiments/teledata/navigation-ablation/close-drawer/doubao-without-ppcot/run-1.mp4" type="video/mp4">
-                        </video>
-                        <div class="llm-cell-footer">
-                          <span class="cell-score">—/5</span>
-                          <div class="run-switcher" role="group" aria-label="Doubao without PP-CoT, Close Drawer run" data-run-switcher>
-                            <button class="is-active" type="button" aria-pressed="true" data-run-source="static/videos/experiments/teledata/navigation-ablation/close-drawer/doubao-without-ppcot/run-1.mp4">Run 1</button>
-                            <button type="button" aria-pressed="false" data-run-source="static/videos/experiments/teledata/navigation-ablation/close-drawer/doubao-without-ppcot/run-2.mp4">Run 2</button>
-                          </div>
-                        </div>
-                      </td>
-                      <td data-llm-video-cell>
-                        <video controls muted playsinline preload="none" poster="static/videos/experiments/teledata/navigation-ablation/turn-on-lamp/doubao-without-ppcot/run-1.jpg">
-                          <source src="static/videos/experiments/teledata/navigation-ablation/turn-on-lamp/doubao-without-ppcot/run-1.mp4" type="video/mp4">
-                        </video>
-                        <div class="llm-cell-footer"><span class="cell-score">—/5</span></div>
-                      </td>
-                      <td data-llm-video-cell>
-                        <video controls muted playsinline preload="none" poster="static/videos/experiments/teledata/navigation-ablation/lower-toilet-lid/doubao-without-ppcot/run-1.jpg">
-                          <source src="static/videos/experiments/teledata/navigation-ablation/lower-toilet-lid/doubao-without-ppcot/run-1.mp4" type="video/mp4">
-                        </video>
-                        <div class="llm-cell-footer">
-                          <span class="cell-score">—/5</span>
-                          <div class="run-switcher" role="group" aria-label="Doubao without PP-CoT, Lower Toilet Lid run" data-run-switcher>
-                            <button class="is-active" type="button" aria-pressed="true" data-run-source="static/videos/experiments/teledata/navigation-ablation/lower-toilet-lid/doubao-without-ppcot/run-1.mp4">Run 1</button>
-                            <button type="button" aria-pressed="false" data-run-source="static/videos/experiments/teledata/navigation-ablation/lower-toilet-lid/doubao-without-ppcot/run-2.mp4">Run 2</button>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="overall-score">—%</td>
-                    </tr>
+              <div class="ablation-grid" aria-label="Navigation instruction decomposition comparison">
+                <article class="ablation-card" data-ablation-card="doubao-without-ppcot">
+                  <header>
+                    <div>
+                      <strong>Doubao-Seed-2.1-Pro</strong>
+                      <span>w/o PP-CoT</span>
+                    </div>
+                    <span class="ablation-score" data-ablation-score="doubao-without-ppcot">—/5</span>
+                  </header>
+                  <video controls muted playsinline preload="none" data-ablation-video="doubao-without-ppcot">
+                    <source src="static/videos/experiments/teledata/navigation-ablation/close-drawer/doubao-without-ppcot/run-1.mp4" type="video/mp4">
+                  </video>
+                  <div class="run-switcher" role="group" aria-label="Doubao without PP-CoT run" data-ablation-run-switcher="doubao-without-ppcot">
+                    <button class="is-active" type="button" aria-pressed="true" data-ablation-run="1">Run 1</button>
+                    <button type="button" aria-pressed="false" data-ablation-run="2">Run 2</button>
+                  </div>
+                </article>
 
-                    <tr>
-                      <th scope="row">
-                        <span>Qwen-3.7-Max</span>
-                        <small>(w/o PP-CoT)</small>
-                      </th>
-                      <td data-llm-video-cell>
-                        <video controls muted playsinline preload="none" poster="static/videos/experiments/teledata/navigation-ablation/close-drawer/qwen-without-ppcot/run-1.jpg">
-                          <source src="static/videos/experiments/teledata/navigation-ablation/close-drawer/qwen-without-ppcot/run-1.mp4" type="video/mp4">
-                        </video>
-                        <div class="llm-cell-footer">
-                          <span class="cell-score">—/5</span>
-                          <div class="run-switcher" role="group" aria-label="Qwen without PP-CoT, Close Drawer run" data-run-switcher>
-                            <button class="is-active" type="button" aria-pressed="true" data-run-source="static/videos/experiments/teledata/navigation-ablation/close-drawer/qwen-without-ppcot/run-1.mp4">Run 1</button>
-                            <button type="button" aria-pressed="false" data-run-source="static/videos/experiments/teledata/navigation-ablation/close-drawer/qwen-without-ppcot/run-2.mp4">Run 2</button>
-                          </div>
-                        </div>
-                      </td>
-                      <td data-llm-video-cell>
-                        <video controls muted playsinline preload="none" poster="static/videos/experiments/teledata/navigation-ablation/turn-on-lamp/qwen-without-ppcot/run-1.jpg">
-                          <source src="static/videos/experiments/teledata/navigation-ablation/turn-on-lamp/qwen-without-ppcot/run-1.mp4" type="video/mp4">
-                        </video>
-                        <div class="llm-cell-footer"><span class="cell-score">—/5</span></div>
-                      </td>
-                      <td data-llm-video-cell>
-                        <video controls muted playsinline preload="none" poster="static/videos/experiments/teledata/navigation-ablation/lower-toilet-lid/qwen-without-ppcot/run-1.jpg">
-                          <source src="static/videos/experiments/teledata/navigation-ablation/lower-toilet-lid/qwen-without-ppcot/run-1.mp4" type="video/mp4">
-                        </video>
-                        <div class="llm-cell-footer">
-                          <span class="cell-score">—/5</span>
-                          <div class="run-switcher" role="group" aria-label="Qwen without PP-CoT, Lower Toilet Lid run" data-run-switcher>
-                            <button class="is-active" type="button" aria-pressed="true" data-run-source="static/videos/experiments/teledata/navigation-ablation/lower-toilet-lid/qwen-without-ppcot/run-1.mp4">Run 1</button>
-                            <button type="button" aria-pressed="false" data-run-source="static/videos/experiments/teledata/navigation-ablation/lower-toilet-lid/qwen-without-ppcot/run-2.mp4">Run 2</button>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="overall-score">—%</td>
-                    </tr>
+                <article class="ablation-card" data-ablation-card="qwen-without-ppcot">
+                  <header>
+                    <div>
+                      <strong>Qwen-3.7-Max</strong>
+                      <span>w/o PP-CoT</span>
+                    </div>
+                    <span class="ablation-score" data-ablation-score="qwen-without-ppcot">—/5</span>
+                  </header>
+                  <video controls muted playsinline preload="none" data-ablation-video="qwen-without-ppcot">
+                    <source src="static/videos/experiments/teledata/navigation-ablation/close-drawer/qwen-without-ppcot/run-1.mp4" type="video/mp4">
+                  </video>
+                  <div class="run-switcher" role="group" aria-label="Qwen without PP-CoT run" data-ablation-run-switcher="qwen-without-ppcot">
+                    <button class="is-active" type="button" aria-pressed="true" data-ablation-run="1">Run 1</button>
+                    <button type="button" aria-pressed="false" data-ablation-run="2">Run 2</button>
+                  </div>
+                </article>
 
-                    <tr class="llm-group-start">
-                      <th scope="row"><span>Doubao-Seed-2.1-Pro</span></th>
-                      <td data-llm-video-cell>
-                        <video controls muted playsinline preload="none" poster="static/videos/experiments/teledata/navigation-ablation/close-drawer/doubao-ppcot/run-1.jpg">
-                          <source src="static/videos/experiments/teledata/navigation-ablation/close-drawer/doubao-ppcot/run-1.mp4" type="video/mp4">
-                        </video>
-                        <div class="llm-cell-footer">
-                          <span class="cell-score">—/5</span>
-                          <div class="run-switcher" role="group" aria-label="Doubao with PP-CoT, Close Drawer run" data-run-switcher>
-                            <button class="is-active" type="button" aria-pressed="true" data-run-source="static/videos/experiments/teledata/navigation-ablation/close-drawer/doubao-ppcot/run-1.mp4">Run 1</button>
-                            <button type="button" aria-pressed="false" data-run-source="static/videos/experiments/teledata/navigation-ablation/close-drawer/doubao-ppcot/run-2.mp4">Run 2</button>
-                          </div>
-                        </div>
-                      </td>
-                      <td data-llm-video-cell>
-                        <video controls muted playsinline preload="none" poster="static/videos/experiments/teledata/navigation-ablation/turn-on-lamp/doubao-ppcot/run-1.jpg">
-                          <source src="static/videos/experiments/teledata/navigation-ablation/turn-on-lamp/doubao-ppcot/run-1.mp4" type="video/mp4">
-                        </video>
-                        <div class="llm-cell-footer"><span class="cell-score">—/5</span></div>
-                      </td>
-                      <td data-llm-video-cell>
-                        <video controls muted playsinline preload="none" poster="static/videos/experiments/teledata/navigation-ablation/lower-toilet-lid/doubao-ppcot/run-1.jpg">
-                          <source src="static/videos/experiments/teledata/navigation-ablation/lower-toilet-lid/doubao-ppcot/run-1.mp4" type="video/mp4">
-                        </video>
-                        <div class="llm-cell-footer">
-                          <span class="cell-score">—/5</span>
-                          <div class="run-switcher" role="group" aria-label="Doubao with PP-CoT, Lower Toilet Lid run" data-run-switcher>
-                            <button class="is-active" type="button" aria-pressed="true" data-run-source="static/videos/experiments/teledata/navigation-ablation/lower-toilet-lid/doubao-ppcot/run-1.mp4">Run 1</button>
-                            <button type="button" aria-pressed="false" data-run-source="static/videos/experiments/teledata/navigation-ablation/lower-toilet-lid/doubao-ppcot/run-2.mp4">Run 2</button>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="overall-score">—%</td>
-                    </tr>
+                <article class="ablation-card" data-ablation-card="doubao-ppcot">
+                  <header>
+                    <div><strong>Doubao-Seed-2.1-Pro</strong></div>
+                    <span class="ablation-score" data-ablation-score="doubao-ppcot">—/5</span>
+                  </header>
+                  <video controls muted playsinline preload="none" data-ablation-video="doubao-ppcot">
+                    <source src="static/videos/experiments/teledata/navigation-ablation/close-drawer/doubao-ppcot/run-1.mp4" type="video/mp4">
+                  </video>
+                  <div class="run-switcher" role="group" aria-label="Doubao with PP-CoT run" data-ablation-run-switcher="doubao-ppcot">
+                    <button class="is-active" type="button" aria-pressed="true" data-ablation-run="1">Run 1</button>
+                    <button type="button" aria-pressed="false" data-ablation-run="2">Run 2</button>
+                  </div>
+                </article>
 
-                    <tr class="ours-row">
-                      <th scope="row">
-                        <span>Qwen-3.7-Max</span>
-                        <small>(Ours)</small>
-                      </th>
-                      <td data-llm-video-cell>
-                        <video controls muted playsinline preload="none" poster="static/videos/experiments/teledata/close-drawer/tonav.jpg">
-                          <source src="static/videos/experiments/teledata/close-drawer/tonav.mp4" type="video/mp4">
-                        </video>
-                        <div class="llm-cell-footer"><span class="cell-score">4/5</span></div>
-                      </td>
-                      <td data-llm-video-cell>
-                        <video controls muted playsinline preload="none" poster="static/videos/experiments/teledata/turn-on-lamp/tonav.jpg">
-                          <source src="static/videos/experiments/teledata/turn-on-lamp/tonav.mp4" type="video/mp4">
-                        </video>
-                        <div class="llm-cell-footer"><span class="cell-score">3/5</span></div>
-                      </td>
-                      <td data-llm-video-cell>
-                        <video controls muted playsinline preload="none" poster="static/videos/experiments/teledata/lower-toilet-lid/tonav.jpg">
-                          <source src="static/videos/experiments/teledata/lower-toilet-lid/tonav.mp4" type="video/mp4">
-                        </video>
-                        <div class="llm-cell-footer"><span class="cell-score">2/5</span></div>
-                      </td>
-                      <td class="overall-score">60%</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <article class="ablation-card ablation-card-ours" data-ablation-card="qwen-ours">
+                  <header>
+                    <div>
+                      <strong>Qwen-3.7-Max</strong>
+                      <span>Ours</span>
+                    </div>
+                    <span class="ablation-score" data-ablation-score="qwen-ours">4/5</span>
+                  </header>
+                  <video controls muted playsinline preload="none" data-ablation-video="qwen-ours">
+                    <source src="static/videos/experiments/teledata/close-drawer/tonav.mp4" type="video/mp4">
+                  </video>
+                  <p class="ablation-card-note">TONAV · Qwen-3.7-Max</p>
+                </article>
               </div>
             </div>
           </section>
