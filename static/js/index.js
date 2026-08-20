@@ -16,7 +16,7 @@
   };
 
   const videoRoot = "static/videos/experiments";
-  const experimentAssetVersion = "20260811-4";
+  const experimentAssetVersion = "20260820-1";
 
   function setupWorksMenu() {
     const trigger = document.querySelector(".works-trigger");
@@ -64,6 +64,7 @@
     const panels = [...browser.querySelectorAll("[data-panel]")];
     const comparisonMethodButtons = [...browser.querySelectorAll("[data-method]")];
     const teledataMethodButtons = [...browser.querySelectorAll("[data-teledata-method]")];
+    const llmRunSwitchers = [...browser.querySelectorAll("[data-run-switcher]")];
     const comparisonVideos = [...browser.querySelectorAll("[data-comparison-video]")];
     const endtoendVideo = browser.querySelector("[data-endtoend-video]");
     const teledataVideo = browser.querySelector("[data-teledata-video]");
@@ -236,6 +237,28 @@
         activeTeledataMethod = button.dataset.teledataMethod;
         setActiveButtons(teledataMethodButtons, "teledataMethod", activeTeledataMethod);
         updateTeledata();
+      });
+    });
+
+    llmRunSwitchers.forEach((switcher) => {
+      const cell = switcher.closest("[data-llm-video-cell]");
+      const video = cell ? cell.querySelector("video") : null;
+      const buttons = [...switcher.querySelectorAll("[data-run-source]")];
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          if (!video || button.classList.contains("is-active")) {
+            return;
+          }
+
+          pauseAllVideos();
+          buttons.forEach((item) => {
+            const active = item === button;
+            item.classList.toggle("is-active", active);
+            item.setAttribute("aria-pressed", String(active));
+          });
+          setVideoSource(video, button.dataset.runSource);
+        });
       });
     });
 
