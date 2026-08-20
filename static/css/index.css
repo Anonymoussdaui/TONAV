@@ -303,6 +303,67 @@ h3 {
   box-shadow: 0 13px 30px rgba(74, 99, 174, 0.14);
 }
 
+.hero-resources {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: min(100%, 840px);
+  margin: 26px auto 0;
+}
+
+.resource-pill {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 10px 18px;
+  border: 1px solid #e9edf5;
+  border-radius: 14px;
+  background: #f7f7f8;
+  color: #303744;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.resource-pill:disabled {
+  cursor: default;
+  opacity: 1;
+}
+
+.resource-pill--compact {
+  min-width: 104px;
+}
+
+.resource-icon {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 17px;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 1.35;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.resource-icon--github {
+  stroke: none;
+}
+
+.resource-icon--arxiv {
+  display: inline-grid;
+  place-items: center;
+  color: #171b22;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1;
+}
+
 .content-section {
   padding: 98px 0;
 }
@@ -1002,6 +1063,24 @@ footer {
 
   .hero-summary {
     font-size: 15px;
+  }
+
+  .hero-resources {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    width: min(100%, 500px);
+    margin-top: 24px;
+  }
+
+  .resource-pill,
+  .resource-pill--compact {
+    width: 100%;
+    min-width: 0;
+    min-height: 46px;
+    padding-inline: 10px;
+    font-size: 12px;
+    white-space: normal;
   }
 
   .content-section {
