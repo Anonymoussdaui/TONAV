@@ -17,8 +17,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="static/css/index.css?v=20260820-2">
-  <script src="static/js/index.js?v=20260820-2" defer></script>
+  <link rel="stylesheet" href="static/css/index.css?v=20260820-3">
+  <script src="static/js/index.js?v=20260820-3" defer></script>
 </head>
 
 <body>
@@ -232,7 +232,7 @@
                 </div>
                 <div class="method-control" role="group" aria-label="Select teleoperation navigation setting">
                   <button class="is-active" type="button" data-teledata-method="tonav">TONAV</button>
-                  <button type="button" data-teledata-method="internvln">InternVLN</button>
+                  <button type="button" data-teledata-method="internnav">InternNav</button>
                   <button type="button" data-teledata-method="streamvln">StreamVLN</button>
                 </div>
               </div>
@@ -273,10 +273,6 @@
                   <video controls muted playsinline preload="none" data-ablation-video="doubao-without-ppcot">
                     <source src="static/videos/experiments/teledata/navigation-ablation/close-drawer/doubao-without-ppcot/run-1.mp4" type="video/mp4">
                   </video>
-                  <div class="run-switcher" role="group" aria-label="Doubao without PP-CoT run" data-ablation-run-switcher="doubao-without-ppcot">
-                    <button class="is-active" type="button" aria-pressed="true" data-ablation-run="1">Run 1</button>
-                    <button type="button" aria-pressed="false" data-ablation-run="2">Run 2</button>
-                  </div>
                 </article>
 
                 <article class="ablation-card" data-ablation-card="qwen-without-ppcot">
@@ -290,10 +286,6 @@
                   <video controls muted playsinline preload="none" data-ablation-video="qwen-without-ppcot">
                     <source src="static/videos/experiments/teledata/navigation-ablation/close-drawer/qwen-without-ppcot/run-1.mp4" type="video/mp4">
                   </video>
-                  <div class="run-switcher" role="group" aria-label="Qwen without PP-CoT run" data-ablation-run-switcher="qwen-without-ppcot">
-                    <button class="is-active" type="button" aria-pressed="true" data-ablation-run="1">Run 1</button>
-                    <button type="button" aria-pressed="false" data-ablation-run="2">Run 2</button>
-                  </div>
                 </article>
 
                 <article class="ablation-card" data-ablation-card="doubao-ppcot">
@@ -304,10 +296,6 @@
                   <video controls muted playsinline preload="none" data-ablation-video="doubao-ppcot">
                     <source src="static/videos/experiments/teledata/navigation-ablation/close-drawer/doubao-ppcot/run-1.mp4" type="video/mp4">
                   </video>
-                  <div class="run-switcher" role="group" aria-label="Doubao with PP-CoT run" data-ablation-run-switcher="doubao-ppcot">
-                    <button class="is-active" type="button" aria-pressed="true" data-ablation-run="1">Run 1</button>
-                    <button type="button" aria-pressed="false" data-ablation-run="2">Run 2</button>
-                  </div>
                 </article>
 
                 <article class="ablation-card ablation-card-ours" data-ablation-card="qwen-ours">
@@ -319,9 +307,8 @@
                     <span class="ablation-score" data-ablation-score="qwen-ours">4/5</span>
                   </header>
                   <video controls muted playsinline preload="none" data-ablation-video="qwen-ours">
-                    <source src="static/videos/experiments/teledata/close-drawer/tonav.mp4" type="video/mp4">
+                    <source src="static/videos/experiments/teledata/navigation-ablation/close-drawer/qwen-ours/run-1.mp4" type="video/mp4">
                   </video>
-                  <p class="ablation-card-note">TONAV · Qwen-3.7-Max</p>
                 </article>
               </div>
             </div>

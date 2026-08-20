@@ -11,12 +11,12 @@
     tonav: "TONAV",
     dp: "DP",
     act: "ACT",
-    internvln: "InternVLN",
+    internnav: "InternNav",
     streamvln: "StreamVLN"
   };
 
   const videoRoot = "static/videos/experiments";
-  const experimentAssetVersion = "20260820-2";
+  const experimentAssetVersion = "20260820-3";
 
   function setupWorksMenu() {
     const trigger = document.querySelector(".works-trigger");
@@ -65,7 +65,6 @@
     const comparisonMethodButtons = [...browser.querySelectorAll("[data-method]")];
     const teledataMethodButtons = [...browser.querySelectorAll("[data-teledata-method]")];
     const ablationVideos = [...browser.querySelectorAll("[data-ablation-video]")];
-    const ablationRunSwitchers = [...browser.querySelectorAll("[data-ablation-run-switcher]")];
     const comparisonVideos = [...browser.querySelectorAll("[data-comparison-video]")];
     const endtoendVideo = browser.querySelector("[data-endtoend-video]");
     const teledataVideo = browser.querySelector("[data-teledata-video]");
@@ -78,7 +77,6 @@
     let activeMethod = "tonav";
     let activeTeledataMethod = "tonav";
     let seeking = false;
-    const ablationRunState = {};
 
     const ablationOursScores = {
       "close-drawer": "4/5",
@@ -175,16 +173,8 @@
       browser.querySelector("[data-teledata-caption]").textContent = `${methodLabel} · ${taskLabel}`;
     }
 
-    function getAblationRun(method) {
-      if (!ablationRunState[activeTask]) {
-        ablationRunState[activeTask] = {};
-      }
-      return ablationRunState[activeTask][method] || 1;
-    }
-
     function updateAblation() {
       const taskLabel = taskLabels[activeTask];
-      const hasMultipleRuns = activeTask !== "turn-on-lamp";
       const title = browser.querySelector("[data-ablation-title]");
       const oursScore = browser.querySelector('[data-ablation-score="qwen-ours"]');
 
@@ -197,23 +187,10 @@
 
       ablationVideos.forEach((video) => {
         const method = video.dataset.ablationVideo;
-        const run = method === "qwen-ours" || !hasMultipleRuns ? 1 : getAblationRun(method);
-        const sourcePath = method === "qwen-ours"
-          ? `${videoRoot}/teledata/${activeTask}/tonav.mp4`
-          : `${videoRoot}/teledata/navigation-ablation/${activeTask}/${method}/run-${run}.mp4`;
-        setVideoSource(video, sourcePath);
-      });
-
-      ablationRunSwitchers.forEach((switcher) => {
-        const method = switcher.dataset.ablationRunSwitcher;
-        const activeRun = hasMultipleRuns ? getAblationRun(method) : 1;
-        switcher.hidden = !hasMultipleRuns;
-        switcher.setAttribute("aria-label", `${taskLabel}, ${method.replaceAll("-", " ")} run`);
-        switcher.querySelectorAll("[data-ablation-run]").forEach((button) => {
-          const active = Number(button.dataset.ablationRun) === activeRun;
-          button.classList.toggle("is-active", active);
-          button.setAttribute("aria-pressed", String(active));
-        });
+        setVideoSource(
+          video,
+          `${videoRoot}/teledata/navigation-ablation/${activeTask}/${method}/run-1.mp4`
+        );
       });
     }
 
@@ -288,22 +265,6 @@
         activeTeledataMethod = button.dataset.teledataMethod;
         setActiveButtons(teledataMethodButtons, "teledataMethod", activeTeledataMethod);
         updateTeledata();
-      });
-    });
-
-    ablationRunSwitchers.forEach((switcher) => {
-      const method = switcher.dataset.ablationRunSwitcher;
-      switcher.querySelectorAll("[data-ablation-run]").forEach((button) => {
-        button.addEventListener("click", () => {
-          const run = Number(button.dataset.ablationRun);
-          if (activeTask === "turn-on-lamp" || getAblationRun(method) === run) {
-            return;
-          }
-
-          pauseAllVideos();
-          ablationRunState[activeTask][method] = run;
-          updateAblation();
-        });
       });
     });
 
