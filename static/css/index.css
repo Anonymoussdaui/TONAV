@@ -366,13 +366,15 @@ h3 {
 }
 
 .resource-icon--arxiv {
-  display: inline-grid;
-  place-items: center;
-  color: #171b22;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 19px;
-  font-weight: 700;
-  line-height: 1;
+  width: 16px;
+  height: 18px;
+  flex-basis: 16px;
+}
+
+.resource-icon--pdf {
+  width: 16px;
+  height: 17px;
+  flex-basis: 16px;
 }
 
 .content-section {
