@@ -16,7 +16,7 @@
   };
 
   const videoRoot = "static/videos/experiments";
-  const experimentAssetVersion = "20260820-4";
+  const experimentAssetVersion = "20260821-3";
 
   function setupWorksMenu() {
     const trigger = document.querySelector(".works-trigger");
