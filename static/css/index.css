@@ -531,6 +531,88 @@ h3 {
   margin-bottom: 30px;
 }
 
+.teleop-comparison {
+  margin-bottom: 30px;
+  padding: 27px 30px 30px;
+  border: 1px solid #dce4f3;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 22px 56px rgba(48, 70, 116, 0.08);
+}
+
+.teleop-comparison-heading {
+  text-align: center;
+}
+
+.teleop-comparison-heading > p {
+  margin: 0 0 7px;
+  color: #6f83ad;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.teleop-comparison-heading h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 650;
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+}
+
+.teleop-comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(32px, 7vw, 88px);
+  width: min(100%, 900px);
+  margin: 25px auto 0;
+}
+
+.teleop-comparison-card {
+  min-width: 0;
+  text-align: center;
+}
+
+.teleop-comparison-media {
+  width: min(100%, 360px);
+  aspect-ratio: 9 / 16;
+  margin-inline: auto;
+  overflow: hidden;
+  border: 1px solid #dfe6f2;
+  border-radius: 24px;
+  background: #f2f4f8;
+  box-shadow: 0 16px 38px rgba(36, 53, 91, 0.12);
+}
+
+.teleop-comparison-card--ours .teleop-comparison-media {
+  border-color: #d7dffc;
+  background: #eef1ff;
+  box-shadow: 0 16px 40px rgba(89, 96, 190, 0.14);
+}
+
+.teleop-comparison-media video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.teleop-comparison-label {
+  margin: 15px 0 0;
+  color: #233451;
+  font-size: 16px;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  line-height: 1.4;
+}
+
+.teleop-comparison-label span {
+  color: #6573cf;
+}
+
 .experiment-browser {
   padding: 18px;
   border: 1px solid #dce4f3;
@@ -1118,6 +1200,32 @@ footer {
   .abstract-copy {
     font-size: 14.5px;
     line-height: 1.76;
+  }
+
+  .teleop-comparison {
+    margin-bottom: 22px;
+    padding: 22px 14px 25px;
+    border-radius: 22px;
+  }
+
+  .teleop-comparison-heading h3 {
+    font-size: 22px;
+  }
+
+  .teleop-comparison-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 21px;
+  }
+
+  .teleop-comparison-media {
+    width: min(100%, 330px);
+    border-radius: 20px;
+  }
+
+  .teleop-comparison-label {
+    margin-top: 12px;
+    font-size: 15px;
   }
 
   .experiment-browser {

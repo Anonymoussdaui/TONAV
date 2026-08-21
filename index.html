@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="static/css/index.css?v=20260820-8">
+  <link rel="stylesheet" href="static/css/index.css?v=20260821-1">
   <script src="static/js/index.js?v=20260820-4" defer></script>
 </head>
 
@@ -152,6 +152,31 @@
           <p>Real-world evaluation</p>
           <h2>Experiments</h2>
         </div>
+
+        <section class="teleop-comparison" aria-labelledby="teleop-comparison-title">
+          <div class="teleop-comparison-heading">
+            <p>Teleoperation study</p>
+            <h3 id="teleop-comparison-title">High-Frequency Teleoperation Comparison</h3>
+          </div>
+          <div class="teleop-comparison-grid">
+            <article class="teleop-comparison-card">
+              <div class="teleop-comparison-media">
+                <video controls muted loop playsinline preload="metadata" poster="static/videos/experiments/high-frequency-teleoperation/position-only.jpg?v=20260821-2" aria-label="Position-only high-frequency teleoperation demonstration">
+                  <source src="static/videos/experiments/high-frequency-teleoperation/position-only.mp4?v=20260821-2" type="video/mp4">
+                </video>
+              </div>
+              <p class="teleop-comparison-label">Position-only</p>
+            </article>
+            <article class="teleop-comparison-card teleop-comparison-card--ours">
+              <div class="teleop-comparison-media">
+                <video controls muted loop playsinline preload="metadata" poster="static/videos/experiments/high-frequency-teleoperation/position-velocity-coupled.jpg?v=20260821-2" aria-label="Position-velocity-coupled high-frequency teleoperation demonstration">
+                  <source src="static/videos/experiments/high-frequency-teleoperation/position-velocity-coupled.mp4?v=20260821-2" type="video/mp4">
+                </video>
+              </div>
+              <p class="teleop-comparison-label">Position–velocity-coupled <span>(Ours)</span></p>
+            </article>
+          </div>
+        </section>
 
         <div class="experiment-browser" data-experiment-browser>
           <div class="experiment-tabs" role="tablist" aria-label="Experiment category">
